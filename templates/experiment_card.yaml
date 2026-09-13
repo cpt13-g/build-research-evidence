@@ -1,0 +1,42 @@
+schema_version: "1.0"
+experiment:
+  experiment_id: E0001
+  card_revision: 1
+  status: draft
+  evidence_question_id: P0-EQ1
+  claim_id: C1
+  contribution_id: C1
+  priority: P0
+  experiment_role: CORE_P0
+  experiment_mode: full_evaluation
+  paper_evidence_eligible: true
+  evidence_label: FORMAL_CLAIM_EVIDENCE
+  candidate_id: null
+  design_iteration_id: null
+  cheap_protocol: null
+  purpose: "Why this experiment is the direct test."
+  hypothesis: "A falsifiable expected relationship."
+  changed_variables: [method_variant]
+  controlled_variables: [dataset, split, training_budget, evaluation]
+  datasets: [dataset_id]
+  baselines: []
+  method_variant: {}
+  metrics: [primary_metric]
+  seed_protocol: {}
+  expected_supporting_result: "Predeclared supporting pattern or threshold."
+  falsifying_result: "Predeclared weakening or falsifying pattern."
+  possible_confounders: []
+  dependencies: []
+  estimated_budget:
+    gpu_hours: 0
+  expected_information_gain: "Which uncertainty this resolves."
+  stop_condition: "When the run or experiment family stops."
+  completion_contract:
+    minimum_required_checks: [primary_metric_and_declared_validity_checks]
+    acceptance_condition: "The declared supporting result is observed with required validity checks passing."
+    rejection_condition: "The declared falsifying result is observed with major confounders resolved."
+    stop_when_decided: true
+    extension_requires_evidence_gap: true
+  approval:
+    approved_by: null
+    approved_at: null

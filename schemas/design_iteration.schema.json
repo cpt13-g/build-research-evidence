@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Design iteration",
+  "type": "object",
+  "required": ["schema_version", "design_iteration"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "design_iteration": {
+      "type": "object",
+      "required": ["iteration_id", "parent_method_id", "contribution_id", "design_envelope_id", "trigger_experiment", "observed_problem", "diagnosis", "diagnosis_id", "evidence", "proposed_change", "affected_design_dimensions", "scientific_reason", "expected_effect", "affected_claims", "evaluation_plan", "rejection_condition", "estimated_cost", "approved_scope", "status"],
+      "properties": {
+        "iteration_id": {"pattern": "^D[0-9]{4}$"},
+        "parent_method_id": {"type": "string", "minLength": 1},
+        "contribution_id": {"type": "string", "minLength": 1},
+        "design_envelope_id": {"type": "string", "minLength": 1},
+        "trigger_experiment": {"pattern": "^E[0-9]{4}$"},
+        "observed_problem": {"type": "string", "minLength": 1},
+        "diagnosis": {"type": "string", "minLength": 1},
+        "diagnosis_id": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1},
+        "proposed_change": {"type": "string", "minLength": 1},
+        "affected_design_dimensions": {"type": "array", "minItems": 1},
+        "scientific_reason": {"type": "string", "minLength": 1},
+        "expected_effect": {"type": "string", "minLength": 1},
+        "affected_claims": {"type": "array", "minItems": 1},
+        "evaluation_plan": {"type": "object", "minProperties": 1},
+        "rejection_condition": {"type": "string", "minLength": 1},
+        "estimated_cost": {"type": "object", "minProperties": 1},
+        "approved_scope": {"type": "object", "required": ["allowed_dimensions", "approved_by", "approved_at"]},
+        "status": {"enum": ["proposed", "approved", "implemented", "evaluated", "rejected"]}
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

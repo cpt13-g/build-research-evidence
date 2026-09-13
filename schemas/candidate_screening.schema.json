@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate conceptual screening",
+  "type": "object",
+  "required": ["schema_version", "screening"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "screening": {
+      "type": "object",
+      "required": ["screening_id", "candidate_id", "design_envelope_id", "hard_checks", "scores", "decision", "rationale", "recommended_for_cheap_evaluation", "estimated_cheap_cost"],
+      "properties": {
+        "screening_id": {"type": "string", "pattern": "^CS-[A-Za-z0-9_-]+$"},
+        "candidate_id": {"type": "string", "minLength": 1},
+        "design_envelope_id": {"type": "string", "minLength": 1},
+        "hard_checks": {"type": "object", "required": ["research_spine_compatible", "contribution_aligned", "validation_feasible", "fair_comparison_feasible", "within_budget", "scale_gain_not_primary"]},
+        "scores": {"type": "object", "required": ["claim_alignment", "scientific_rationale", "expected_evidence_strength", "interpretability", "ablation_feasibility", "implementation_feasibility", "compute_cost", "complexity", "risk"]},
+        "decision": {"enum": ["PASS", "REJECT", "HOLD"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "recommended_for_cheap_evaluation": {"type": "boolean"},
+        "estimated_cheap_cost": {"type": "object", "minProperties": 1}
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

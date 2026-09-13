@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate mechanism",
+  "type": "object",
+  "required": ["schema_version", "candidate"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "candidate": {
+      "type": "object",
+      "required": ["candidate_id", "contribution_id", "design_envelope_id", "mechanism_name", "mechanism_summary", "problem_addressed", "scientific_rationale", "architecture_or_algorithm", "expected_effect", "differentiator_from_baseline", "validation_hook", "ablation_hook", "failure_interpretation", "risks", "implementation_complexity", "estimated_cost", "claim_alignment", "design_dimensions", "status"],
+      "properties": {
+        "candidate_id": {"type": "string", "pattern": "^MC-[A-Za-z0-9_-]+$"},
+        "contribution_id": {"type": "string", "minLength": 1},
+        "design_envelope_id": {"type": "string", "minLength": 1},
+        "mechanism_name": {"type": "string", "minLength": 1},
+        "mechanism_summary": {"type": "string", "minLength": 1},
+        "problem_addressed": {"type": "string", "minLength": 1},
+        "scientific_rationale": {"type": "string", "minLength": 1},
+        "architecture_or_algorithm": {"type": "string", "minLength": 1},
+        "expected_effect": {"type": "string", "minLength": 1},
+        "differentiator_from_baseline": {"type": "string", "minLength": 1},
+        "validation_hook": {"type": "string", "minLength": 1},
+        "ablation_hook": {"type": "string", "minLength": 1},
+        "failure_interpretation": {"type": "string", "minLength": 1},
+        "risks": {"type": "array"},
+        "implementation_complexity": {"enum": ["low", "medium", "high"]},
+        "estimated_cost": {"type": "object", "minProperties": 1},
+        "claim_alignment": {"type": "object", "minProperties": 1},
+        "design_dimensions": {"type": "array", "minItems": 1},
+        "status": {"enum": ["proposed", "screened_in", "screened_out", "cheap_evaluated", "selected", "reserve", "full_evaluated", "rejected", "refined"]}
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

@@ -1,0 +1,33 @@
+schema_version: "1.1"
+design_envelope:
+  envelope_id: DE-C1
+  contribution_id: C1
+  functional_requirement_ids:
+    - FR-C1
+  scientific_goal: "Implement the Contribution without changing its scientific direction."
+  problem_to_solve: "Concrete failure mechanism to address."
+  required_capabilities:
+    - preserve_source_specific_information
+  allowed_design_dimensions:
+    - encoder_architecture
+    - representation
+    - fusion
+    - interaction
+    - constraint
+    - loss
+  fixed_scientific_elements:
+    - task
+    - contribution_direction
+    - primary_claim
+    - evaluation_goal
+  forbidden_drift:
+    - change_task
+    - redefine_primary_claim
+    - abandon_contribution
+    - change_metric_to_hide_failure
+  evaluation_targets:
+    - task_performance
+    - expected_intermediate_behavior
+  compute_constraints: {}
+  status: draft
+

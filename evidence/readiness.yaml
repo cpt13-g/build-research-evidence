@@ -1,0 +1,17 @@
+schema_version: "1.0"
+assessed_at: ""
+hard_gates:
+  primary_claim_has_evidence: false
+  evaluation_valid: false
+  baseline_fair: false
+  results_reproducible: false
+dimensions:
+  core_evidence: MISSING
+  fairness: UNKNOWN
+  reproducibility: UNKNOWN
+  mechanism_evidence: MISSING
+  venue_completeness: UNKNOWN
+  presentation_readiness: MISSING
+readiness: NOT_READY
+blocking_reasons: [Primary evidence audit has not run.]
+recommended_next_step: Complete intake, method realization, and P0 evidence first.

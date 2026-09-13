@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Method lineage",
+  "type": "object",
+  "required": ["schema_version", "lineage"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "lineage": {
+      "type": "object",
+      "required": ["root_method_id", "current_method_id", "nodes", "edges"],
+      "properties": {
+        "root_method_id": {"type": ["string", "null"]},
+        "current_method_id": {"type": ["string", "null"]},
+        "nodes": {"type": "array"},
+        "edges": {"type": "array"}
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

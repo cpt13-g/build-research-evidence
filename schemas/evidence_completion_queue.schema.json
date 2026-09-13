@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence completion queue",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "method_search_reopen_recommended", "active_recommendations", "items"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "generated_at": {"type": "string"},
+    "method_search_reopen_recommended": {"type": "boolean"},
+    "active_recommendations": {"type": "array", "items": {"type": "string"}},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["recommendation_id", "source", "evidence_type", "claim_ids", "claim_relevance", "reviewer_risk", "expected_information_gain", "estimated_cost", "priority", "recommended_for_execution", "reason"],
+        "properties": {
+          "recommendation_id": {"type": "string", "minLength": 1},
+          "source": {"enum": ["CLAIM_GAP", "VENUE_GAP"]},
+          "evidence_type": {"type": "string", "minLength": 1},
+          "claim_ids": {"type": "array"},
+          "claim_relevance": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "reviewer_risk": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "expected_information_gain": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "estimated_cost": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "priority": {"enum": ["P1", "P2", "P3", "SKIP"]},
+          "recommended_for_execution": {"type": "boolean"},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

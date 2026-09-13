@@ -1,0 +1,5 @@
+interface:
+  display_name: "Venue Evidence Audit"
+  short_description: "Find venue-specific experimental evidence gaps"
+  default_prompt: "Use $venue-evidence-audit to assess remaining evidence gaps for the target venue."
+

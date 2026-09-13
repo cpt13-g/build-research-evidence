@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Human Gate 2 summary",
+  "type": "object",
+  "required": ["schema_version", "gate_2_summary"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "gate_2_summary": {
+      "type": "object",
+      "required": ["current_method", "method_evolution_summary", "primary_claim_evidence", "candidate_search_summary", "selection_rationale", "remaining_uncertainty", "current_budget", "potential_refinement_roi", "allowed_decisions"],
+      "properties": {
+        "current_method": {"type": "object"},
+        "method_evolution_summary": {"type": "string"},
+        "primary_claim_evidence": {"type": "object"},
+        "candidate_search_summary": {"type": "object"},
+        "selection_rationale": {"type": "string"},
+        "remaining_uncertainty": {"type": "array"},
+        "current_budget": {"type": "object"},
+        "potential_refinement_roi": {"type": "string"},
+        "allowed_decisions": {"type": "array", "minItems": 1}
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

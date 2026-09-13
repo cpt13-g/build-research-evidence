@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Design envelope",
+  "type": "object",
+  "required": ["schema_version", "design_envelope"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "design_envelope": {
+      "type": "object",
+      "required": ["envelope_id", "contribution_id", "functional_requirement_ids", "scientific_goal", "problem_to_solve", "required_capabilities", "allowed_design_dimensions", "fixed_scientific_elements", "forbidden_drift", "evaluation_targets", "compute_constraints", "status"],
+      "properties": {
+        "envelope_id": {"type": "string", "pattern": "^DE-[A-Za-z0-9_-]+$"},
+        "contribution_id": {"type": "string", "minLength": 1},
+        "functional_requirement_ids": {"type": "array", "minItems": 1},
+        "scientific_goal": {"type": "string", "minLength": 1},
+        "problem_to_solve": {"type": "string", "minLength": 1},
+        "required_capabilities": {"type": "array", "minItems": 1},
+        "allowed_design_dimensions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "fixed_scientific_elements": {"type": "array", "minItems": 1},
+        "forbidden_drift": {"type": "array", "minItems": 1},
+        "evaluation_targets": {"type": "array", "minItems": 1},
+        "compute_constraints": {"type": "object"},
+        "status": {"enum": ["draft", "active", "closed", "superseded"]}
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

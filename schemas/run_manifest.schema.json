@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Immutable run manifest",
+  "type": "object",
+  "required": ["schema_version", "run_id", "experiment_id", "card_path", "card_sha256", "command", "started_at", "ended_at", "exit_code", "timed_out", "log_path", "environment_path", "environment_sha256", "code_identity", "configuration_identity", "data_identity", "artifacts", "manifest_completeness", "missing_declarations", "run_manifest_path"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "experiment_id": {"pattern": "^[ET][0-9]{4}$"},
+    "card_path": {"type": "string", "minLength": 1},
+    "card_sha256": {"pattern": "^[a-f0-9]{64}$"},
+    "command": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "started_at": {"type": "string", "minLength": 1},
+    "ended_at": {"type": "string", "minLength": 1},
+    "exit_code": {"type": "integer"},
+    "timed_out": {"type": "boolean"},
+    "log_path": {"type": "string", "minLength": 1},
+    "environment_path": {"type": "string", "minLength": 1},
+    "environment_sha256": {"pattern": "^[a-f0-9]{64}$"},
+    "code_identity": {
+      "type": "object",
+      "required": ["commit", "tracked_source_dirty", "src_tree_sha256", "configs_tree_sha256", "command_sha256"],
+      "properties": {"command_sha256": {"pattern": "^[a-f0-9]{64}$"}}
+    },
+    "configuration_identity": {"type": "object", "required": ["card_revision", "method_variant", "config_tree_sha256"]},
+    "data_identity": {"type": "object", "required": ["datasets", "seed_protocol"]},
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["kind", "path", "sha256", "size_bytes"],
+        "properties": {
+          "kind": {"enum": ["log", "metrics", "artifact"]},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"pattern": "^[a-f0-9]{64}$"},
+          "size_bytes": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "manifest_completeness": {"enum": ["COMPLETE", "PARTIAL"]},
+    "missing_declarations": {"type": "array", "items": {"type": "string"}},
+    "run_manifest_path": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

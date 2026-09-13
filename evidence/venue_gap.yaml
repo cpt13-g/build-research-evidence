@@ -1,0 +1,14 @@
+schema_version: "1.0"
+venue: not-confirmed
+search_date: ""
+target_papers: 5
+reviewed_papers:
+  - {paper_id: pending-1, citation: "pending", source: "pending", relevance: HIGH, included: false, reason: "Audit not started."}
+  - {paper_id: pending-2, citation: "pending", source: "pending", relevance: HIGH, included: false, reason: "Audit not started."}
+  - {paper_id: pending-3, citation: "pending", source: "pending", relevance: HIGH, included: false, reason: "Audit not started."}
+  - {paper_id: pending-4, citation: "pending", source: "pending", relevance: HIGH, included: false, reason: "Audit not started."}
+  - {paper_id: pending-5, citation: "pending", source: "pending", relevance: HIGH, included: false, reason: "Audit not started."}
+search_stopped: false
+stop_reason: Audit has not started.
+positioning_risks: []
+gaps: []

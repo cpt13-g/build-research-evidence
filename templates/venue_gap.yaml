@@ -1,0 +1,14 @@
+schema_version: "1.0"
+venue: replace-me
+search_date: ""
+target_papers: 5
+reviewed_papers:
+  - {paper_id: P1, citation: "", source: "", relevance: HIGH, included: true, reason: "Highly relevant."}
+  - {paper_id: P2, citation: "", source: "", relevance: HIGH, included: true, reason: "Highly relevant."}
+  - {paper_id: P3, citation: "", source: "", relevance: HIGH, included: true, reason: "Highly relevant."}
+  - {paper_id: P4, citation: "", source: "", relevance: HIGH, included: true, reason: "Highly relevant."}
+  - {paper_id: P5, citation: "", source: "", relevance: HIGH, included: true, reason: "Highly relevant."}
+search_stopped: true
+stop_reason: Core venue expectations and material gaps are stable.
+positioning_risks: []
+gaps: []

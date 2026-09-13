@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+<title id="title">科研实验智能体：先做减法，再补证据</title>
+<desc id="desc">承接 Research Idea Brief，经研究边界、Gate 1 后筛选、骨干实验、Gate 2 后辅助验证、Gate 3 冻结。四个 Skill 共享项目状态与实验记忆。</desc>
+<defs><style>text{font-family:'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#152a42}.muted{fill:#586e82}.white{fill:white}.teal{fill:#087f83}.small{font-size:21px}.body{font-size:24px}.label{font-size:22px;font-weight:700}.stage{font-size:28px;font-weight:700}</style><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#6f879d" stroke-width="1.7"/></marker></defs>
+<rect width="1920" height="1080" fill="#f4f7fb"/>
+<rect x="64" y="52" width="7" height="130" rx="3" fill="#087f83"/>
+<text x="94" y="78" class="label muted">forge-research-evidence · 科研实验智能体</text>
+<text x="90" y="150" font-size="60" font-weight="700">先做减法，再补证据。</text>
+<text x="94" y="196" font-size="27" class="muted">把算力集中在决定论文是否成立的实验上，让更强的 AI 按研究逻辑推进。</text>
+<rect x="1320" y="70" width="530" height="116" rx="18" fill="#142d49"/>
+<text x="1585" y="115" text-anchor="middle" class="white" font-size="28" font-weight="700">主线稳定 · 方法有界 · 证据收敛</text>
+<text x="1585" y="153" text-anchor="middle" class="white small">四个 Skill 协作，三个关键节点由研究者把关</text>
+<rect x="64" y="230" width="1792" height="62" rx="12" fill="#e5edf5"/>
+<text x="92" y="270" class="body" font-weight="700">上期 Idea Skill</text><path d="M285 261 H333" stroke="#6f879d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="360" y="270" class="body">Research Idea Brief</text><text x="700" y="270" class="body muted">接入已有创新点、评价目标与研究边界</text><text x="1808" y="270" text-anchor="end" class="small teal">也支持自然语言 Idea / 现有代码</text>
+<g fill="white" stroke="#d5e0eb" stroke-width="2"><rect x="64" y="326" width="320" height="308" rx="18"/><rect x="432" y="326" width="320" height="308" rx="18"/><rect x="800" y="326" width="320" height="308" rx="18" stroke="#087f83" stroke-width="3"/><rect x="1168" y="326" width="320" height="308" rx="18"/><rect x="1536" y="326" width="320" height="308" rx="18"/></g>
+<g stroke="#6f879d" stroke-width="2" marker-end="url(#arrow)"><path d="M391 480 H423"/><path d="M759 480 H791"/><path d="M1127 480 H1159"/><path d="M1495 480 H1527"/></g>
+<g class="label teal"><text x="90" y="367">01 / 锚定问题</text><text x="458" y="367">02 / 有界探索</text><text x="826" y="367">03 / 集中验证</text><text x="1194" y="367">04 / 按需补全</text><text x="1562" y="367">05 / 收束交付</text></g>
+<g class="stage"><text x="90" y="412">先说清，要验证什么</text><text x="458" y="412">先筛路线，再投算力</text><text x="826" y="412">骨干优先，主动减负</text><text x="1194" y="412">从主表长出实验矩阵</text><text x="1562" y="412">证据到位，就停下来</text></g>
+<g class="body muted"><text x="90" y="468">创新点 → 可检验 Claim</text><text x="90" y="510">需求 → Design Envelope</text><text x="90" y="552">明确主线与实验依赖</text><text x="458" y="468">2–5 个候选，概念筛选</text><text x="458" y="510">Gate 1 后低成本验证</text><text x="458" y="552">筛选结果不作正式证据</text><text x="826" y="468">Baseline 与核心主表</text><text x="826" y="510">运行 → 审计 → 定向改进</text><text x="826" y="552">非必要扩展 → Backlog</text><text x="1194" y="468">按证据缺口与依赖排序</text><text x="1194" y="510">消融 / 泛化 / 边界分析</text><text x="1194" y="552">Venue 审查 → 按需回补</text><text x="1562" y="468">检查支持、反证与缺口</text><text x="1562" y="510">满足就绪要求再冻结</text><text x="1562" y="552">报告 · 证据 · 图表规划</text></g>
+<g fill="#e8f5f3"><rect x="90" y="579" width="268" height="34" rx="8"/><rect x="458" y="579" width="268" height="34" rx="8"/><rect x="826" y="579" width="268" height="34" rx="8"/><rect x="1194" y="579" width="268" height="34" rx="8"/><rect x="1562" y="579" width="268" height="34" rx="8"/></g>
+<g class="small teal" text-anchor="middle"><text x="224" y="603">研究主线保持稳定</text><text x="592" y="603">泛化能力用在明确边界内</text><text x="960" y="603">无诊断，不改方法</text><text x="1328" y="603">独立获批任务可并行</text><text x="1696" y="603">扩展必须有证据理由</text></g>
+<g class="small" text-anchor="middle"><text x="592" y="672">Gate 1｜协议与预算</text><text x="1328" y="672">Gate 2｜辅助验证授权</text><text x="1696" y="672">Gate 3｜Evidence Freeze</text></g>
+<rect x="64" y="709" width="1792" height="217" rx="18" fill="white" stroke="#d5e0eb"/>
+<text x="92" y="750" class="label muted">协作架构</text><text x="92" y="794" class="body" font-weight="700">一个总控</text><text x="92" y="830" class="body" font-weight="700">三个专业角色</text>
+<rect x="300" y="744" width="360" height="118" rx="13" fill="#142d49"/>
+<text x="480" y="791" text-anchor="middle" class="white" font-size="29" font-weight="700">Orchestrator</text><text x="480" y="830" text-anchor="middle" class="white body">统一规划 · 优先级 · 停止决策</text>
+<g fill="#eef5fa"><rect x="729" y="744" width="325" height="118" rx="13"/><rect x="1089" y="744" width="325" height="118" rx="13"/><rect x="1449" y="744" width="377" height="118" rx="13"/></g>
+<g text-anchor="middle"><text x="891" y="789" font-size="27" font-weight="700">Runner</text><text x="891" y="829" class="body muted">实现与执行 · 运行清单</text><text x="1251" y="789" font-size="27" font-weight="700">Result Auditor</text><text x="1251" y="829" class="body muted">盲评首轮 · 科学诊断</text><text x="1637" y="789" font-size="26" font-weight="700">Venue Evidence Audit</text><text x="1637" y="829" class="body muted">识别投稿证据缺口</text></g>
+<path d="M480 744 V730 H1637 V744 M891 730 V744 M1251 730 V744" fill="none" stroke="#6f879d" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M891 870 V901 M1251 870 V901 M1637 870 V901 H480 V872" fill="none" stroke="#6f879d" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1140" y="923" text-anchor="middle" class="small teal">执行事实与审计建议回到总控，由总控安排下一步</text>
+<rect x="64" y="948" width="1792" height="70" rx="13" fill="#e5edf5"/>
+<text x="92" y="991" class="label">共享底座</text><text x="260" y="991" class="body">项目状态 + 实验记忆</text><text x="625" y="991" class="body muted">预算与停止约束</text><text x="955" y="991" class="body muted">Run Manifest 与哈希核验</text><text x="1420" y="991" class="body muted">正面、负面与边界结果留存</text>
+<text x="64" y="1056" class="small muted">本期：从明确 Idea 到可审计实验依据</text><text x="1856" y="1056" text-anchor="end" class="small teal">下一环节：科研绘图与论文撰写（计划） →</text>
+</svg>

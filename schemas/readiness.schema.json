@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Submission readiness assessment",
+  "type": "object",
+  "required": ["schema_version", "assessed_at", "hard_gates", "dimensions", "readiness", "blocking_reasons", "recommended_next_step"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "assessed_at": {"type": "string"},
+    "hard_gates": {
+      "type": "object",
+      "required": ["primary_claim_has_evidence", "evaluation_valid", "baseline_fair", "results_reproducible"],
+      "additionalProperties": {"type": "boolean"}
+    },
+    "dimensions": {"type": "object"},
+    "readiness": {"enum": ["NOT_READY", "A", "B", "C", "D"]},
+    "blocking_reasons": {"type": "array"},
+    "recommended_next_step": {"type": "string"}
+  }
+}

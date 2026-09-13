@@ -1,0 +1,60 @@
+schema_version: "1.0"
+contract:
+  version: 1
+  status: draft
+  research_spine_revision: 0
+  claims: []
+  evidence_questions: []
+  datasets: []
+  data_splits: []
+  baselines: []
+  primary_metrics: []
+  secondary_metrics: []
+  seed_protocol:
+    seeds: []
+    na_reason: null
+  statistical_protocol: {}
+  fairness_rules: []
+  compute_environment: {}
+  execution_policy:
+    allow_network: false
+    preserve_raw_data: true
+    preserve_checkpoints: true
+    max_single_run_wall_time_hours: 0
+  budget: {}
+  priorities:
+    p0_gate_required: true
+  stop_conditions: []
+  method_policy:
+    structure_frozen: false
+    allowed_via_design_iteration: true
+    frozen_l1_elements:
+      - research_question
+      - core_hypothesis
+      - contribution_directions
+      - primary_claims
+      - evaluation_goals
+      - task_boundary
+    adaptive_l2_elements:
+      - model_architecture
+      - module_design
+      - representation
+      - fusion
+      - attention
+      - routing
+      - constraint
+      - loss
+      - decoder
+      - training_mechanism
+    free_l3_elements:
+      - implementation
+      - hyperparameters
+      - optimizer
+      - data_loader
+      - memory_optimization
+      - logging
+  approval:
+    gate: gate_1
+    status: pending
+    approved_by: null
+    approved_at: null

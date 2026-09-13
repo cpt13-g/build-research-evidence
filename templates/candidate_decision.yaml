@@ -1,0 +1,22 @@
+schema_version: "1.1"
+candidate_decision:
+  decision_id: CD-C1-01
+  design_envelope_id: DE-C1
+  selected:
+    - MC-C1-01
+  reserve: []
+  rejected: []
+  comparison_dimensions:
+    task_performance: "Compare preliminary task performance."
+    claim_alignment: "Compare directness to the Claim."
+    scientific_interpretability: "Compare mechanism clarity."
+    evidence_strength: "Compare validation and ablation hooks."
+    stability: "Compare variability and failure rate."
+    complexity: "Compare added complexity."
+    compute_cost: "Compare compute and parameter cost."
+    implementation_risk: "Compare remaining implementation uncertainty."
+  rationale: "Explain why the selected route is scientifically preferable."
+  metric_tradeoff: "State any metric sacrificed or gained."
+  scientific_tradeoff: "State the evidence and interpretability tradeoff."
+  next_action: FULL_EVALUATION
+

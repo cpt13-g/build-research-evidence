@@ -1,0 +1,19 @@
+schema_version: "1.0"
+tuning:
+  tuning_id: T0001
+  card_revision: 1
+  status: draft
+  purpose: "Engineering or training selection goal."
+  unblocks_experiment: E0001
+  changed_parameters: [learning_rate]
+  controlled_variables: [dataset, split, model]
+  search_bounds: {}
+  selection_rule: "Predeclared engineering selection rule."
+  estimated_budget:
+    gpu_hours: 0
+  stop_condition: "Maximum trials or convergence rule."
+  claim_evidence_eligible: false
+  approval:
+    approved_by: null
+    approved_at: null
+

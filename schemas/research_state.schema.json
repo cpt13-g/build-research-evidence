@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research_state.schema.json",
+  "title": "Research project state",
+  "type": "object",
+  "required": ["schema_version", "revision", "project", "status", "current_stage", "research_spine", "venue", "claims", "evidence_questions", "functional_requirements", "design_envelopes", "current_method", "design_iterations", "candidate_registry", "method_search", "experiment_contract", "experiment_registry", "active_queue", "backlog", "completed_experiments", "failed_experiments", "claim_status", "evidence", "budget", "unresolved_risks", "next_action", "human_gates"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "revision": {"type": "integer", "minimum": 0},
+    "project": {
+      "type": "object",
+      "required": ["id", "title", "created_at", "updated_at"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string"},
+        "created_at": {"type": "string"},
+        "updated_at": {"type": "string"}
+      }
+    },
+    "status": {"enum": ["ACTIVE", "BLOCKED_INPUT", "BUDGET_EXTENSION_REQUIRED", "HYPOTHESIS_AT_RISK", "EVIDENCE_FROZEN", "COMPLETED"]},
+    "current_stage": {"enum": ["S0_INTAKE_RECOVERY", "S1_RESEARCH_VENUE_CONTRACT", "S2_CLAIM_FORMALIZATION", "S3_METHOD_REALIZATION", "S4_EXPERIMENTAL_PROTOCOL", "S5_INFRASTRUCTURE_BASELINE", "S6_P0_MAIN_EXPERIMENTS", "S7_CLAIM_AUDIT_REFINEMENT", "S8_SUPPORTING_EXPERIMENTS", "S9_VENUE_EVIDENCE_AUDIT", "S10_EVIDENCE_FREEZE_REPORT"]},
+    "research_spine": {
+      "type": "object",
+      "required": ["research_question", "problem_context", "core_hypothesis", "contributions", "primary_claims", "secondary_claims", "evaluation_goals", "task_boundary", "exclusions"],
+      "properties": {
+        "research_question": {"type": ["string", "null"]},
+        "problem_context": {"type": ["string", "null"]},
+        "core_hypothesis": {"type": ["string", "null"]},
+        "contributions": {"type": "array"},
+        "primary_claims": {"type": "array"},
+        "secondary_claims": {"type": "array"},
+        "evaluation_goals": {"type": "array"},
+        "task_boundary": {"type": "array"},
+        "exclusions": {"type": "array"}
+      }
+    },
+    "venue": {"type": "object", "required": ["target", "status"], "properties": {"target": {"type": ["string", "null"]}, "status": {"enum": ["unknown", "proposed", "confirmed"]}}},
+    "claims": {"type": "array"},
+    "evidence_questions": {"type": "array"},
+    "functional_requirements": {"type": "array", "items": {"$ref": "#/$defs/artifactRef"}},
+    "design_envelopes": {"type": "array", "items": {"$ref": "#/$defs/artifactRef"}},
+    "current_method": {"type": ["object", "null"]},
+    "design_iterations": {"type": "array", "items": {"$ref": "#/$defs/artifactRef"}},
+    "candidate_registry": {"type": "array", "items": {"$ref": "#/$defs/candidateRef"}},
+    "method_search": {"$ref": "#/$defs/methodSearch"},
+    "experiment_contract": {"type": "object", "required": ["path", "version", "status"], "properties": {"path": {"type": "string"}, "version": {"type": "integer", "minimum": 0}, "status": {"enum": ["missing", "draft", "approved", "superseded"]}}},
+    "experiment_registry": {"type": "array", "items": {"$ref": "#/$defs/registryItem"}},
+    "active_queue": {"type": "array", "items": {"type": "string"}},
+    "backlog": {"type": "array", "items": {"type": "string"}},
+    "completed_experiments": {"type": "array", "items": {"type": "string"}},
+    "failed_experiments": {"type": "array", "items": {"type": "string"}},
+    "claim_status": {"type": "object"},
+    "evidence": {"$ref": "#/$defs/evidenceIndex"},
+    "budget": {"$ref": "#/$defs/budget"},
+    "unresolved_risks": {"type": "array"},
+    "next_action": {"type": ["object", "null"]},
+    "human_gates": {"type": "object", "required": ["gate_1", "gate_2", "gate_3"], "additionalProperties": {"enum": ["not_ready", "pending", "approved", "rejected"]}},
+    "memory_path": {"type": "string"},
+    "version_control": {"type": "object"}
+  },
+  "$defs": {
+    "artifactRef": {
+      "type": "object",
+      "required": ["id", "path", "status"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "path": {"type": "string", "minLength": 1}, "status": {"type": "string", "minLength": 1}}
+    },
+    "candidateRef": {
+      "type": "object",
+      "required": ["id", "path", "status", "contribution_id", "design_envelope_id"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "path": {"type": "string", "minLength": 1}, "status": {"type": "string", "minLength": 1}, "contribution_id": {"type": "string"}, "design_envelope_id": {"type": "string"}}
+    },
+    "registryItem": {
+      "type": "object",
+      "required": ["id", "kind", "priority", "experiment_role", "experiment_mode", "paper_evidence_eligible", "status", "card_path"],
+      "properties": {
+        "id": {"pattern": "^[ET][0-9]{4}$"},
+        "kind": {"enum": ["scientific", "tuning"]},
+        "priority": {"enum": ["P0", "P0_BLOCKER", "P1", "P2", "P3"]},
+        "experiment_role": {"enum": ["CORE_P0", "P0_SUPPORT", "P1_SUPPORT", "P2_COMPLETENESS", "P3_OPTIONAL", "TUNING", "DEBUG"]},
+        "experiment_mode": {"enum": ["full_evaluation", "cheap_evaluation", "diagnostic", "refinement_validation", "debug_validation", "tuning"]},
+        "paper_evidence_eligible": {"type": "boolean"},
+        "status": {"enum": ["draft", "approved", "queued", "running", "completed", "failed", "audited", "blocked"]},
+        "card_path": {"type": "string"}
+      }
+    },
+    "methodSearch": {
+      "type": "object",
+      "required": ["phase", "contribution_id", "active_envelope_id", "active_candidate_ids", "selected_candidate_ids", "reserve_candidate_ids", "rejected_candidate_ids", "candidate_decision_path", "cheap_protocol_signature", "full_evaluated_candidate_ids", "reasonable_candidates_tested", "consistent_negative_results", "candidate_failures", "reopen_count", "reopen_reason", "last_diagnosis_id", "method_lineage_path", "budget"],
+      "properties": {
+        "phase": {"enum": ["NOT_STARTED", "EXPLORE", "SCREEN", "CHEAP_EVALUATE", "SELECT", "FULL_EVALUATE", "REFINE", "CONVERGED"]},
+        "contribution_id": {"type": ["string", "null"]},
+        "active_envelope_id": {"type": ["string", "null"]},
+        "active_candidate_ids": {"type": "array"},
+        "selected_candidate_ids": {"type": "array"},
+        "reserve_candidate_ids": {"type": "array"},
+        "rejected_candidate_ids": {"type": "array"},
+        "candidate_decision_path": {"type": ["string", "null"]},
+        "cheap_protocol_signature": {"type": ["string", "null"]},
+        "full_evaluated_candidate_ids": {"type": "array"},
+        "reasonable_candidates_tested": {"type": "integer", "minimum": 0},
+        "consistent_negative_results": {"type": "integer", "minimum": 0},
+        "candidate_failures": {"type": "integer", "minimum": 0},
+        "reopen_count": {"type": "integer", "minimum": 0},
+        "reopen_reason": {"type": ["string", "null"]},
+        "last_diagnosis_id": {"type": ["string", "null"]},
+        "method_lineage_path": {"type": "string"},
+        "budget": {"$ref": "#/$defs/methodSearchBudget"}
+      }
+    },
+    "methodSearchBudget": {
+      "type": "object",
+      "required": ["limits", "used", "extension_status", "extension_recommendation"],
+      "properties": {
+        "limits": {"type": "object", "required": ["max_initial_candidates", "max_cheap_candidates", "max_full_candidates", "max_design_iterations", "max_reopen_search", "max_candidate_failures"]},
+        "used": {"type": "object", "required": ["initial_candidates", "cheap_candidates", "full_candidates", "design_iterations", "reopen_search", "candidate_failures"]},
+        "extension_status": {"enum": ["not_requested", "recommended", "approved", "rejected"]},
+        "extension_recommendation": {"type": ["object", "null"]}
+      }
+    },
+    "evidenceIndex": {
+      "type": "object",
+      "required": ["claim_evidence_path", "venue_gap_path", "completion_queue_path", "readiness_path", "figure_table_plan_path", "experiment_report_path", "method_status", "claim_status", "evidence_status", "submission_readiness", "evidence_freeze", "next_evidence_action"],
+      "properties": {
+        "claim_evidence_path": {"type": "string"},
+        "venue_gap_path": {"type": "string"},
+        "completion_queue_path": {"type": "string"},
+        "readiness_path": {"type": "string"},
+        "figure_table_plan_path": {"type": "string"},
+        "experiment_report_path": {"type": "string"},
+        "method_status": {"enum": ["NOT_STARTED", "ACTIVE", "CONVERGED", "AT_RISK"]},
+        "claim_status": {"enum": ["NOT_ASSESSED", "SUPPORTED", "PARTIAL", "UNSUPPORTED", "INCONCLUSIVE"]},
+        "evidence_status": {"enum": ["NOT_ASSESSED", "INCOMPLETE", "SUFFICIENT", "AT_RISK", "FROZEN"]},
+        "submission_readiness": {"enum": ["NOT_ASSESSED", "NOT_READY", "A", "B", "C", "D"]},
+        "evidence_freeze": {
+          "type": "object",
+          "required": ["status", "approved_by", "approved_at", "reason"],
+          "properties": {
+            "status": {"enum": ["not_ready", "recommended", "approved"]},
+            "approved_by": {"type": ["string", "null"]},
+            "approved_at": {"type": ["string", "null"]},
+            "reason": {"type": ["string", "null"]}
+          }
+        },
+        "next_evidence_action": {"type": ["object", "null"]}
+      }
+    },
+    "budget": {"type": "object", "required": ["limits", "used", "reserved", "extension_status"], "properties": {"limits": {"type": "object"}, "used": {"type": "object"}, "reserved": {"type": "object"}, "extension_status": {"enum": ["not_requested", "recommended", "approved", "rejected"]}}}
+  },
+  "additionalProperties": true
+}

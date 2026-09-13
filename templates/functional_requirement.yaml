@@ -1,0 +1,16 @@
+schema_version: "1.1"
+functional_requirement:
+  requirement_id: FR-C1
+  contribution_id: C1
+  research_problem: "State the concrete problem behind the Contribution."
+  observed_or_expected_failure: "Describe how existing methods fail or are expected to fail."
+  hypothesized_cause: "State the scientific cause, not a preferred module."
+  required_capability:
+    - preserve_source_specific_information
+  validation_target:
+    - intermediate_behavior
+    - task_metric
+  evidence_question_ids:
+    - P0-EQ1
+  status: draft
+

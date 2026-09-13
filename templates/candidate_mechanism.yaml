@@ -1,0 +1,25 @@
+schema_version: "1.1"
+candidate:
+  candidate_id: MC-C1-01
+  contribution_id: C1
+  design_envelope_id: DE-C1
+  mechanism_name: "Mechanism name"
+  mechanism_summary: "Concrete mechanism, not a module label."
+  problem_addressed: "Which diagnosed or expected failure it addresses."
+  scientific_rationale: "Why this mechanism provides the required capability."
+  architecture_or_algorithm: "Operational structure or algorithm."
+  expected_effect: "Expected task and intermediate behavior changes."
+  differentiator_from_baseline: "Controlled difference from the baseline."
+  validation_hook: "Observable mechanism-specific validation."
+  ablation_hook: "How the mechanism can be isolated or removed."
+  failure_interpretation: "What failure would and would not imply."
+  risks: []
+  implementation_complexity: medium
+  estimated_cost:
+    gpu_hours: 0
+  claim_alignment:
+    C1: direct
+  design_dimensions:
+    - fusion
+  status: proposed
+

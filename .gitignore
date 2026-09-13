@@ -1,0 +1,45 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
+venv/
+.env
+.env.*
+
+# Local research data and large generated artifacts
+data/
+datasets/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.npy
+*.npz
+*.log
+
+# Runtime outputs: keep only the directory placeholders in the template repo
+configs/*
+!configs/.gitkeep
+experiments/*
+!experiments/.gitkeep
+figures/*
+!figures/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# Authoring process files; these are not part of the distributable agent
+.docx_work/
+.pptx_build/
+项目展示图/
+forge-research-evidence项目口播稿_三版/
+视频对应讲稿.docx
+forge-research-evidence项目流程图.pptx
+*.inspect.ndjson
+
+# Internal development notes and milestone reports
+docs/IMPLEMENTATION_PLAN.md
+docs/MVP*_GAP_ANALYSIS.md
+docs/MVP*_IMPLEMENTATION_REPORT.md

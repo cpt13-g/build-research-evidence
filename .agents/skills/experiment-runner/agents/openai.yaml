@@ -1,0 +1,5 @@
+interface:
+  display_name: "Experiment Runner"
+  short_description: "Run approved experiments reproducibly"
+  default_prompt: "Use $experiment-runner to implement and execute this approved experiment card."
+

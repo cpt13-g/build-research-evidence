@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Venue evidence gap matrix",
+  "type": "object",
+  "required": ["schema_version", "venue", "search_date", "target_papers", "reviewed_papers", "search_stopped", "stop_reason", "positioning_risks", "gaps"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "venue": {"type": "string"},
+    "search_date": {"type": "string"},
+    "target_papers": {"type": "integer", "minimum": 5},
+    "reviewed_papers": {"type": "array", "minItems": 5},
+    "search_stopped": {"type": "boolean"},
+    "stop_reason": {"type": "string", "minLength": 1},
+    "positioning_risks": {"type": "array"},
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_type", "claim_ids", "current_status", "venue_commonality", "claim_relevance", "reviewer_risk", "expected_information_gain", "estimated_cost", "recommendation", "reason"],
+        "properties": {
+          "evidence_type": {"type": "string", "minLength": 1},
+          "claim_ids": {"type": "array"},
+          "current_status": {"enum": ["COMPLETE", "PARTIAL", "MISSING"]},
+          "venue_commonality": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "claim_relevance": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "reviewer_risk": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "expected_information_gain": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "estimated_cost": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+          "recommendation": {"enum": ["P1", "P2", "P3", "SKIP"]},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

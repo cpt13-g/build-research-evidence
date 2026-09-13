@@ -1,0 +1,114 @@
+schema_version: "1.0"
+revision: 0
+project:
+  id: replace-me
+  title: ""
+  created_at: ""
+  updated_at: ""
+status: BLOCKED_INPUT
+current_stage: S0_INTAKE_RECOVERY
+research_spine:
+  research_question: null
+  problem_context: null
+  core_hypothesis: null
+  contributions: []
+  primary_claims: []
+  secondary_claims: []
+  evaluation_goals: []
+  task_boundary: []
+  exclusions: []
+venue:
+  target: null
+  status: unknown
+claims: []
+evidence_questions: []
+functional_requirements: []
+design_envelopes: []
+current_method: null
+design_iterations: []
+candidate_registry: []
+method_search:
+  phase: NOT_STARTED
+  contribution_id: null
+  active_envelope_id: null
+  active_candidate_ids: []
+  selected_candidate_ids: []
+  reserve_candidate_ids: []
+  rejected_candidate_ids: []
+  candidate_decision_path: null
+  cheap_protocol_signature: null
+  full_evaluated_candidate_ids: []
+  reasonable_candidates_tested: 0
+  consistent_negative_results: 0
+  candidate_failures: 0
+  reopen_count: 0
+  reopen_reason: null
+  last_diagnosis_id: null
+  method_lineage_path: evidence/method_lineage.yaml
+  budget:
+    limits:
+      max_initial_candidates: 5
+      max_cheap_candidates: 3
+      max_full_candidates: 2
+      max_design_iterations: 0
+      max_reopen_search: 0
+      max_candidate_failures: 0
+    used:
+      initial_candidates: 0
+      cheap_candidates: 0
+      full_candidates: 0
+      design_iterations: 0
+      reopen_search: 0
+      candidate_failures: 0
+    extension_status: not_requested
+    extension_recommendation: null
+experiment_contract:
+  path: research/experiment_contract.yaml
+  version: 0
+  status: missing
+experiment_registry: []
+active_queue: []
+backlog: []
+completed_experiments: []
+failed_experiments: []
+claim_status: {}
+evidence:
+  claim_evidence_path: evidence/claim_evidence.yaml
+  venue_gap_path: evidence/venue_gap.yaml
+  completion_queue_path: evidence/evidence_completion_queue.yaml
+  readiness_path: evidence/readiness.yaml
+  figure_table_plan_path: reports/FIGURE_TABLE_PLAN.md
+  experiment_report_path: reports/EXPERIMENT_REPORT.md
+  method_status: NOT_STARTED
+  claim_status: NOT_ASSESSED
+  evidence_status: NOT_ASSESSED
+  submission_readiness: NOT_ASSESSED
+  evidence_freeze:
+    status: not_ready
+    approved_by: null
+    approved_at: null
+    reason: null
+  next_evidence_action: null
+budget:
+  limits:
+    gpu_hours: 0
+    wall_time_hours: 0
+    max_full_runs: 0
+    max_debug_rounds: 0
+    max_tuning_rounds: 0
+    max_design_iterations: 0
+    max_failed_runs: 0
+  used: {}
+  reserved: {}
+  extension_status: not_requested
+unresolved_risks: []
+next_action:
+  type: collect_input
+  reason: Complete the lightweight experiment intake.
+human_gates:
+  gate_1: not_ready
+  gate_2: not_ready
+  gate_3: not_ready
+memory_path: evidence/experiment_memory.jsonl
+version_control:
+  enabled: false

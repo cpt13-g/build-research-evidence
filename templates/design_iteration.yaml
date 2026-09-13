@@ -1,0 +1,32 @@
+schema_version: "1.0"
+design_iteration:
+  iteration_id: D0001
+  parent_method_id: M0
+  contribution_id: C1
+  design_envelope_id: DE-C1
+  trigger_experiment: E0001
+  status: proposed
+  observed_problem: "State the observed result, not a guessed fix."
+  diagnosis: "Identify the most plausible specific cause and evidence."
+  diagnosis_id: DG-E0001
+  evidence:
+    - experiments/E0001/results/R-E0001-001.yaml
+  proposed_change: "Describe one targeted technical change."
+  affected_design_dimensions:
+    - fusion
+  scientific_reason: "Explain why the change addresses the Contribution."
+  expected_effect: "State the expected observable effect."
+  affected_claims:
+    - C1
+  evaluation_plan:
+    metrics:
+      - primary_metric
+    experiment_role: P0_SUPPORT
+  rejection_condition: "State what result rejects this change."
+  estimated_cost:
+    gpu_hours: 0
+  approved_scope:
+    allowed_dimensions:
+      - fusion
+    approved_by: null
+    approved_at: null

@@ -1,0 +1,16 @@
+schema_version: "1.1"
+gate_2_summary:
+  current_method: {}
+  method_evolution_summary: ""
+  primary_claim_evidence: {}
+  candidate_search_summary: {}
+  selection_rationale: ""
+  remaining_uncertainty: []
+  current_budget: {}
+  potential_refinement_roi: ""
+  allowed_decisions:
+    - CONTINUE_REFINEMENT
+    - ACCEPT_CURRENT_METHOD
+    - ENTER_SUPPORTING_EXPERIMENTS
+    - HYPOTHESIS_AT_RISK
+

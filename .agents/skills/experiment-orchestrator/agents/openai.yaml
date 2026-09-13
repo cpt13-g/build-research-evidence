@@ -1,0 +1,5 @@
+interface:
+  display_name: "Experiment Orchestrator"
+  short_description: "Direct claim-driven research evidence projects"
+  default_prompt: "Use $experiment-orchestrator to recover this project and choose the next evidence-driven action."
+

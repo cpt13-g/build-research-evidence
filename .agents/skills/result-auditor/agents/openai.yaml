@@ -1,0 +1,5 @@
+interface:
+  display_name: "Result Auditor"
+  short_description: "Audit scientific value and claim impact"
+  default_prompt: "Use $result-auditor to audit this completed run and classify its scientific evidence."
+

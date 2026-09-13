@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claim evidence matrix",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "method_status", "claim_status", "evidence_status", "excluded_preliminary_experiments", "excluded_invalid_evidence", "claims"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "generated_at": {"type": "string"},
+    "method_status": {"enum": ["NOT_STARTED", "ACTIVE", "CONVERGED", "AT_RISK"]},
+    "claim_status": {"enum": ["NOT_ASSESSED", "SUPPORTED", "PARTIAL", "UNSUPPORTED", "INCONCLUSIVE"]},
+    "evidence_status": {"enum": ["NOT_ASSESSED", "INCOMPLETE", "SUFFICIENT", "AT_RISK"]},
+    "excluded_preliminary_experiments": {"type": "array", "items": {"type": "string"}},
+    "excluded_invalid_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["experiment_id", "reason"],
+        "properties": {
+          "experiment_id": {"pattern": "^E[0-9]{4}$"},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}}
+  },
+  "$defs": {
+    "experimentRef": {
+      "type": "object",
+      "required": ["experiment_id", "card_path", "result_path", "result_type"],
+      "properties": {
+        "experiment_id": {"pattern": "^E[0-9]{4}$"},
+        "card_path": {"type": "string"},
+        "result_path": {"type": "string"},
+        "result_type": {"enum": ["SUPPORTING", "FALSIFYING", "BOUNDARY", "NULL", "CONFOUNDING", "IMPLEMENTATION_FAILURE", "INCONCLUSIVE"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["claim_id", "statement", "importance", "required_evidence", "supporting_experiments", "contradicting_experiments", "boundary_experiments", "unresolved_confounds", "assessment", "evidence_strength", "status", "remaining_gap", "next_action"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string"},
+        "importance": {"enum": ["primary", "secondary"]},
+        "required_evidence": {"type": "array"},
+        "supporting_experiments": {"type": "array", "items": {"$ref": "#/$defs/experimentRef"}},
+        "contradicting_experiments": {"type": "array", "items": {"$ref": "#/$defs/experimentRef"}},
+        "boundary_experiments": {"type": "array", "items": {"$ref": "#/$defs/experimentRef"}},
+        "unresolved_confounds": {"type": "array"},
+        "assessment": {
+          "type": "object",
+          "required": ["directness", "validity", "consistency", "confound_control", "hard_failures"],
+          "properties": {
+            "directness": {"enum": ["DIRECT", "INDIRECT", "MISSING"]},
+            "validity": {"enum": ["VALID", "MIXED", "INVALID"]},
+            "consistency": {"enum": ["CONSISTENT", "SINGLE", "MIXED", "NONE"]},
+            "confound_control": {"enum": ["CONTROLLED", "PARTIAL", "UNCONTROLLED"]},
+            "hard_failures": {"type": "array"}
+          }
+        },
+        "evidence_strength": {"enum": ["STRONG", "MODERATE", "WEAK", "INSUFFICIENT"]},
+        "status": {"enum": ["SUPPORTED", "PARTIAL", "UNSUPPORTED", "INCONCLUSIVE"]},
+        "remaining_gap": {"type": "array"},
+        "next_action": {"type": ["object", "null"]}
+      }
+    }
+  }
+}

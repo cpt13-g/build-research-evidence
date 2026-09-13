@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific experiment card",
+  "type": "object",
+  "required": ["schema_version", "experiment"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "experiment": {
+      "type": "object",
+      "required": ["experiment_id", "card_revision", "status", "evidence_question_id", "claim_id", "contribution_id", "priority", "experiment_role", "experiment_mode", "paper_evidence_eligible", "evidence_label", "candidate_id", "design_iteration_id", "cheap_protocol", "purpose", "hypothesis", "changed_variables", "controlled_variables", "datasets", "baselines", "method_variant", "metrics", "seed_protocol", "expected_supporting_result", "falsifying_result", "possible_confounders", "dependencies", "estimated_budget", "expected_information_gain", "stop_condition", "completion_contract", "approval"],
+      "properties": {
+        "experiment_id": {"pattern": "^E[0-9]{4}$"},
+        "card_revision": {"type": "integer", "minimum": 1},
+        "status": {"enum": ["draft", "approved", "running", "completed", "failed", "audited"]},
+        "evidence_question_id": {"type": "string", "minLength": 1},
+        "claim_id": {"type": "string", "minLength": 1},
+        "contribution_id": {"type": "string", "minLength": 1},
+        "priority": {"enum": ["P0", "P0_BLOCKER", "P1", "P2", "P3"]},
+        "experiment_role": {"enum": ["CORE_P0", "P0_SUPPORT", "P1_SUPPORT", "P2_COMPLETENESS", "P3_OPTIONAL", "DEBUG"]},
+        "experiment_mode": {"enum": ["full_evaluation", "cheap_evaluation", "diagnostic", "refinement_validation", "debug_validation"]},
+        "paper_evidence_eligible": {"type": "boolean"},
+        "evidence_label": {"enum": ["FORMAL_CLAIM_EVIDENCE", "PRELIMINARY_NON_PAPER"]},
+        "candidate_id": {"type": ["string", "null"]},
+        "design_iteration_id": {"type": ["string", "null"]},
+        "cheap_protocol": {"type": ["object", "null"]},
+        "purpose": {"type": "string", "minLength": 1},
+        "hypothesis": {"type": "string", "minLength": 1},
+        "changed_variables": {"type": "array", "minItems": 1},
+        "controlled_variables": {"type": "array", "minItems": 1},
+        "datasets": {"type": "array", "minItems": 1},
+        "baselines": {"type": "array"},
+        "method_variant": {"type": "object"},
+        "metrics": {"type": "array", "minItems": 1},
+        "seed_protocol": {"type": "object"},
+        "expected_supporting_result": {"type": "string", "minLength": 1},
+        "falsifying_result": {"type": "string", "minLength": 1},
+        "possible_confounders": {"type": "array"},
+        "dependencies": {"type": "array"},
+        "estimated_budget": {"type": "object", "minProperties": 1},
+        "expected_information_gain": {"type": "string", "minLength": 1},
+        "stop_condition": {"type": "string", "minLength": 1},
+        "completion_contract": {
+          "type": "object",
+          "required": ["minimum_required_checks", "acceptance_condition", "rejection_condition", "stop_when_decided", "extension_requires_evidence_gap"],
+          "properties": {
+            "minimum_required_checks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+            "acceptance_condition": {"type": "string", "minLength": 1},
+            "rejection_condition": {"type": "string", "minLength": 1},
+            "stop_when_decided": {"const": true},
+            "extension_requires_evidence_gap": {"const": true}
+          },
+          "additionalProperties": false
+        },
+        "approval": {"type": "object", "required": ["approved_by", "approved_at"]}
+      }
+    }
+  },
+  "additionalProperties": true
+}

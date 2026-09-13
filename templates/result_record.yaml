@@ -1,0 +1,50 @@
+schema_version: "1.0"
+result:
+  record_id: R-E0001-001
+  experiment_id: E0001
+  card_revision: 1
+  run_id: run-001
+  execution:
+    status: completed
+    started_at: ""
+    ended_at: ""
+    exit_code: 0
+    command: []
+    run_manifest_path: ""
+    environment_path: ""
+    log_path: ""
+  metrics: {}
+  artifacts: []
+  evidence_classification: FORMAL_CLAIM_EVIDENCE
+  audit:
+    independence:
+      first_pass_mode: BLIND_FIRST_PASS
+      planner_interpretation_seen_before_verdict: false
+      raw_evidence_reviewed: true
+      inputs_reviewed: [experiment_card, experiment_contract, run_manifest]
+      deterministic_checks: [manifest_integrity]
+      exception_reason: null
+    result_type: INCONCLUSIVE
+    validity: uncertain
+    performance_value: "Pending audit."
+    scientific_value: "Pending audit."
+    claim_impact: {}
+    confidence: low
+    confounders: []
+    recommended_next_action: "Run a structured diagnosis."
+    diagnosis:
+      diagnosis_id: DG-E0001
+      result_type: INCONCLUSIVE
+      experiment_validity: uncertain
+      convergence_status: unknown
+      baseline_fairness: uncertain
+      primary_observation: "Pending audit."
+      claim_impact: {}
+      performance_value: "Pending audit."
+      scientific_value: "Pending audit."
+      confidence: low
+      suspected_causes: []
+      unresolved_confounders: []
+      failure_level: NONE
+      recommended_action: RUN_DIAGNOSTIC
+    audited_at: ""
