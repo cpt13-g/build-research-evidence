@@ -1,10 +1,10 @@
-# Forge Research Evidence
+# Build Research Evidence
 
 > **把 Idea 锻造成 Evidence：让强大的 AI 学会取舍，先完成决定论文成败的骨干实验，再让证据矩阵有章法地生长。**
 
 面向计算机科学、人工智能与数据驱动工科论文的**长线科研实验智能体**。它承接已经明确的 Research Idea，把方法设计、代码实现、实验执行、结果审计和投稿证据补全连接成一条可恢复、可约束、可停止的工作流。
 
-`Forge` 取“锻造、打磨”之意：科研证据必须经过预先定义、真实运行与独立审计形成，而不是由模型凭空生成。项目展示名统一为 **Forge Research Evidence**，仓库、目录和状态标识统一使用 `forge-research-evidence`。
+`Build` 取“构建、建立”之意：科研证据必须经过预先定义、真实运行与独立审计形成，而不是由模型凭空生成。项目展示名统一为 **Build Research Evidence**，仓库、目录和状态标识统一使用 `build-research-evidence`。
 
 ![科研实验智能体：让 AI 的探索力集中成论文的说服力](docs/assets/research-agent-poster.png)
 
@@ -73,8 +73,8 @@ Orchestrator 是唯一科研决策入口。Runner 只执行批准范围，Audito
 > 请下载**完整仓库**，不要只复制某一个 Skill。一项独立研究建议使用一份单独的项目副本，避免共享状态相互污染。
 
 ```bash
-git clone https://github.com/cpt13-g/forge-research-evidence.git
-cd forge-research-evidence
+git clone https://github.com/cpt13-g/build-research-evidence.git
+cd build-research-evidence
 python -m pip install -r requirements.txt
 python tools/validate_project.py
 python tools/state_manager.py show
