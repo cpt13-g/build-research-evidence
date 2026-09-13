@@ -8,7 +8,7 @@
 
 ![科研实验智能体：让 AI 的探索力集中成论文的说服力](docs/assets/research-agent-poster.png)
 
-[完整使用说明](docs/USAGE.md) · [下载宣传海报](docs/assets/research-agent-poster.png) · [查看高清架构图](docs/assets/research-agent-overview.png)
+[完整使用说明](docs/USAGE.md) · [下载宣传海报](docs/assets/research-agent-poster.png) · [查看高清架构图](docs/assets/research-agent-overview.png) · [Apache-2.0 许可证](LICENSE)
 
 ## 30 秒了解它为什么值得使用
 
@@ -73,7 +73,7 @@ Orchestrator 是唯一科研决策入口。Runner 只执行批准范围，Audito
 > 请下载**完整仓库**，不要只复制某一个 Skill。一项独立研究建议使用一份单独的项目副本，避免共享状态相互污染。
 
 ```bash
-git clone <仓库地址>
+git clone https://github.com/cpt13-g/forge-research-evidence.git
 cd forge-research-evidence
 python -m pip install -r requirements.txt
 python tools/validate_project.py
@@ -130,6 +130,6 @@ tests/            流程和门禁回归测试
 - [方法设计与收敛](docs/METHOD_REALIZATION_PROTOCOL.md)
 - [证据补全与冻结](docs/EVIDENCE_COMPLETION_PROTOCOL.md)
 
-## 发布状态
+## 开源许可
 
-当前为待发布整理版本，尚未上传 GitHub。仓库暂未声明开源许可证；正式发布前需由维护者确定授权方式。
+本项目采用 [Apache License 2.0](LICENSE) 发布。欢迎在保留许可证与必要归属说明的前提下使用、修改和分发。

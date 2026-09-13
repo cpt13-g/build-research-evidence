@@ -28,10 +28,10 @@
 
 ### 方式 A：Git 克隆
 
-正式发布后，把下面的占位地址替换成仓库地址：
+使用 Git 克隆公开仓库：
 
 ```bash
-git clone <GitHub 仓库地址>
+git clone https://github.com/cpt13-g/forge-research-evidence.git
 cd forge-research-evidence
 ```
 
