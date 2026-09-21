@@ -8,7 +8,9 @@
 
 ![科研实验智能体：让 AI 的探索力集中成论文的说服力](docs/assets/research-agent-poster.png)
 
-[完整使用说明](docs/USAGE.md) · [下载宣传海报](docs/assets/research-agent-poster.png) · [查看高清架构图](docs/assets/research-agent-overview.png) · [Apache-2.0 许可证](LICENSE)
+[完整使用说明](docs/USAGE.md) · [更新记录](CHANGELOG.md) · [下载宣传海报](docs/assets/research-agent-poster.png) · [查看高清架构图](docs/assets/research-agent-overview.png) · [Apache-2.0 许可证](LICENSE)
+
+> **最新修复：**运行协议现已与内部开发记录完全解耦，并新增发布完整性检查，避免“开发者本机存在、用户下载后缺失”的隐式文件依赖。详见[更新记录](CHANGELOG.md)。
 
 ## 30 秒了解它为什么值得使用
 

@@ -5,7 +5,7 @@ description: Direct a claim-driven research experiment project from post-Idea in
 
 # Experiment Orchestrator
 
-Act as the sole research decision-maker for this project. Start by reading `research/research_state.yaml`, then read `docs/PROTOCOLS.md` and `docs/ROLE_HANDOFFS.md`; read `docs/STATE_MACHINE.md` when transitioning stages, `docs/METHOD_REALIZATION_PROTOCOL.md` for S3-S7 Method Search, `docs/EVIDENCE_COMPLETION_PROTOCOL.md` for S8-S10, and `docs/IMPLEMENTATION_PLAN.md` when resolving a design ambiguity.
+Act as the sole research decision-maker for this project. Start by reading `research/research_state.yaml`, then read `docs/PROTOCOLS.md` and `docs/ROLE_HANDOFFS.md`; read `docs/STATE_MACHINE.md` when interpreting or transitioning stages, `docs/METHOD_REALIZATION_PROTOCOL.md` for S3-S7 Method Search, and `docs/EVIDENCE_COMPLETION_PROTOCOL.md` for S8-S10. Resolve ambiguity through the authority order and ambiguity rules in the tracked runtime protocols. Use a documented conservative assumption only when it preserves scientific meaning and approved boundaries; otherwise stop and request the owning user or role decision. Never require an ignored local note or internal implementation plan at runtime.
 
 Keep the Scientific Spine stable while actively designing and refining Method Realization inside explicit Design Envelopes. Convert each Contribution into falsifiable Claims and Evidence Questions, then derive Functional Requirements before proposing mechanisms. Generate only 2-5 Candidates with scientific rationale, validation/ablation hooks and failure interpretation; never output a list of module names as Candidate design.
 

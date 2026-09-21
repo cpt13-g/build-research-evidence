@@ -349,6 +349,7 @@ python tools/report_builder.py final-report
 | 提示或状态 | 含义 | 处理方法 |
 |---|---|---|
 | 四个 Skill 未显示 | 没有从正确目录启动或任务未刷新 | 打开仓库根目录，新建任务后用 `/skills` 检查 |
+| `Runtime reference ... absent from the published repository` | 某个运行文件只存在于开发者本机，没有随仓库发布 | 更新或重新完整克隆仓库；不要只复制单个 Skill，也不要用本地内部文档临时补齐 |
 | `BLOCKED_INPUT` | 缺少研究骨架所需输入 | 提供 Idea、边界、数据、指标和预算 |
 | `Gate 1 ... required` | 尚未批准合同与预算 | 让 Orchestrator 提交 Gate 1 摘要，由研究者决定 |
 | `stale revision` | 其他操作已更新状态 | 重读状态并使用最新 revision |

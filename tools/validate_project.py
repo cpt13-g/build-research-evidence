@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 from pathlib import Path
 
 import yaml
@@ -41,6 +42,67 @@ DOCUMENTS = {
 
 SKILLS = ["experiment-orchestrator", "experiment-runner", "result-auditor", "venue-evidence-audit"]
 
+RUNTIME_DOCUMENTS = [
+    "AGENTS.md",
+    "Research Spine.md",
+    "docs/PROTOCOLS.md",
+    "docs/ROLE_HANDOFFS.md",
+    "docs/STATE_MACHINE.md",
+    "docs/METHOD_REALIZATION_PROTOCOL.md",
+    "docs/EVIDENCE_COMPLETION_PROTOCOL.md",
+]
+
+REFERENCE_PREFIXES = ("research/", "docs/", "tools/", "templates/", "schemas/", ".agents/")
+REFERENCE_PATTERN = re.compile(r"`([^`\n]+\.(?:md|yaml|py|json))`")
+
+
+def _tracked_files(root: Path) -> set[str] | None:
+    """Return Git-tracked files, or None for a source archive without Git metadata."""
+    if not (root / ".git").exists():
+        return None
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-z"],
+            check=True,
+            capture_output=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
+    return {
+        item.decode("utf-8").replace("\\", "/")
+        for item in result.stdout.split(b"\0")
+        if item
+    }
+
+
+def _validate_runtime_reference(root: Path, reference: str, tracked: set[str] | None) -> None:
+    normalized = reference.replace("\\", "/")
+    if not normalized.startswith(REFERENCE_PREFIXES):
+        return
+    if not (root / normalized).exists():
+        raise ProtocolError(f"Broken runtime reference: {normalized}")
+    if tracked is not None and normalized not in tracked:
+        raise ProtocolError(
+            f"Runtime reference is present locally but absent from the published repository: {normalized}"
+        )
+
+
+def validate_runtime_documents(root: Path) -> list[str]:
+    """Ensure runtime instructions are self-contained in a clone or source archive."""
+    tracked = _tracked_files(root)
+    sources = [*RUNTIME_DOCUMENTS, *(f".agents/skills/{skill}/SKILL.md" for skill in SKILLS)]
+    messages: list[str] = []
+    for source in sources:
+        source_path = root / source
+        if not source_path.exists():
+            raise ProtocolError(f"Missing runtime document: {source}")
+        if tracked is not None and source.replace("\\", "/") not in tracked:
+            raise ProtocolError(f"Runtime document is not included in the published repository: {source}")
+        for reference in REFERENCE_PATTERN.findall(source_path.read_text(encoding="utf-8")):
+            _validate_runtime_reference(root, reference, tracked)
+        messages.append(f"runtime document OK: {source}")
+    return messages
+
 
 def validate_project(root: Path) -> list[str]:
     messages: list[str] = []
@@ -65,10 +127,8 @@ def validate_project(root: Path) -> list[str]:
         default_prompt = openai.get("interface", {}).get("default_prompt", "")
         if f"${skill}" not in default_prompt:
             raise ProtocolError(f"Default prompt must mention ${skill}")
-        for reference in re.findall(r"`([^`]+\.(?:md|yaml|py))`", skill_text):
-            if reference.startswith(("research/", "docs/", "tools/")) and not (root / reference).exists():
-                raise ProtocolError(f"Broken Skill reference in {skill}: {reference}")
         messages.append(f"skill OK: {skill}")
+    messages.extend(validate_runtime_documents(root))
     return messages
 
 

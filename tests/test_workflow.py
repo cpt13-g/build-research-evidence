@@ -29,6 +29,8 @@ class WorkflowTest(unittest.TestCase):
             source = ROOT / directory
             if source.exists():
                 shutil.copytree(source, self.root / directory)
+        for filename in ("AGENTS.md", "Research Spine.md"):
+            shutil.copy2(ROOT / filename, self.root / filename)
 
         state = yaml.safe_load((self.root / "templates" / "research_state.yaml").read_text(encoding="utf-8"))
         state["project"].update({"id": "toy-text-classification", "title": "Hierarchical pooling for long-text classification", "created_at": "2026-09-02T00:00:00Z", "updated_at": "2026-09-02T00:00:00Z"})
