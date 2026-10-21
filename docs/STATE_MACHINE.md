@@ -56,4 +56,6 @@ At S8-S10, use the separate compact statuses `method_status`, `claim_status`, `e
 
 ## Ambiguity resolution
 
+Use current role views according to `docs/CONTEXT_POLICY.md`; omitted history is not a completed stage condition. Gate, refinement, risk and Freeze decisions still require all relevant evidence and guards below.
+
 Apply the authority order in `docs/ROLE_HANDOFFS.md`. A routine implementation ambiguity inside an approved Card may use a documented conservative assumption only when it preserves the Card's scientific meaning, controlled variables, budget and completion contract. If an assumption would change any of those, affect a primary Claim, cross a Human Gate or expand scope, stop and request the owning decision instead of searching for an internal planning document or silently inventing policy.

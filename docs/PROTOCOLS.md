@@ -2,6 +2,8 @@
 
 This file is the shared interface contract for all four skills. Detailed field requirements are enforced by `schemas/`; YAML files in `templates/` are bootstrap examples.
 
+Runtime context is governed by `docs/CONTEXT_POLICY.md`. Use source-linked role views from `tools/context_view.py`, reuse unchanged rules already loaded in the current context, and retrieve relevant raw evidence before scientific decisions. Views do not grant approval, replace independent audit or change the single authoritative state.
+
 ## Authority and ownership
 
 | Object | Creates | Approves / mutates decision state | Consumes |

@@ -92,8 +92,8 @@ Codex 会扫描仓库中的 `.agents/skills/`，并在任务开始时读取根�
 
 ```text
 使用 $experiment-orchestrator 接续这个科研项目。
-请先读取 research/research_state.yaml，并遵守 AGENTS.md、Research Spine.md
-和共享协议。从输入恢复开始，梳理核心 Claim、Evidence Question、
+请先通过 tools/context_view.py 的 orchestrator 视图读取权威状态，
+遵守项目规则和 docs/CONTEXT_POLICY.md。从输入恢复开始，梳理核心 Claim、Evidence Question、
 Functional Requirement、Design Envelope 与骨干实验依赖，准备 Gate 1。
 Gate 1 通过前不要运行任何实验。
 
@@ -290,8 +290,9 @@ Seed、阈值和预算只是示例，应依据你的任务和统计协议设置�
 
 ```text
 使用 $experiment-orchestrator 恢复项目。
-以 research/research_state.yaml 为唯一决策状态源，检查 revision、当前阶段、
-Active Queue、Backlog、预算、Human Gate 和 next_action，并核对引用工件。
+以 research/research_state.yaml 为唯一决策状态源，先生成 orchestrator 视图，
+检查 revision、阶段、活跃任务、预算、Human Gate、next_action 和相关证据索引。
+按需展开 Backlog、历史与失败结果，复用当前上下文已读且哈希未变的协议。
 先汇报 Current Stage、Current Finding、Decision 与 Next Action，再继续。
 ```
 
@@ -308,6 +309,29 @@ python tools/budget_tracker.py show
 ```
 
 状态写入采用 `revision` 乐观锁。遇到 `stale revision` 时重新读取状态，使用最新 `--expected-revision`，不要覆盖新状态。
+
+`state_manager.py show` 现在默认输出精简角色视图，`experiment_registry.py list` 默认显示最多 8 条并标记省略数。依赖旧版完整 YAML 输出的脚本请使用 `show --full` 和 `list --all`。按需读取示例：
+
+```bash
+python tools/state_manager.py show --full
+python tools/state_manager.py show --field candidate_registry
+python tools/experiment_registry.py list --id E0001
+python tools/experiment_registry.py list --status failed --all
+python tools/context_view.py show --role orchestrator
+python tools/context_view.py show --role runner --experiment E0001
+python tools/context_view.py show --role auditor --experiment E0001 --run-manifest experiments/E0001/runs/<run-id>/run_manifest.json
+python tools/context_view.py show --role venue
+python tools/context_view.py history --experiment E0001 --limit 10
+python tools/context_view.py excerpt experiments/E0001/runs/<run-id>/run.log --start-line 1 --lines 60
+```
+
+例如，同一实验卡要求 3 个 Seed 时，Runner 可连续完成批准范围内的运行和检查，再交给 Auditor；仍须保存全部 Seed 和失败尝试。路径拼错等明确工程故障可以在批准调试预算内修复；改变模型机制、数据划分或公平比较时，必须回到总控。视图不批准实验，也不能替代科学审计。
+
+历史输出的 `next_before_line` 可传给 `history --before-line <行号>` 查看更早事件，负面和空结果始终保留。日志若返回 `partial_line`，需提高 `--max-chars` 阅读该行剩余内容；若返回 `next_start_line`，可继续向后阅读。指标、异常与关键检查必须追溯原始材料。
+
+视图带有源文件和协议哈希。若将 JSON 视图另存为项目内文件，可以运行 `python tools/context_view.py verify <视图文件路径>` 检查是否过期；有变化时返回非零退出码并要求重建。通常直接重新生成当前视图即可。新会话仍需读取相关规则，不能把哈希当作已经理解协议的证明。
+
+完整约束见 `docs/CONTEXT_POLICY.md`。实验设计、统计检查和独立审计的质量优先，Token 优化不构成减少必要验证的理由。
 
 实验卡典型生命周期：
 

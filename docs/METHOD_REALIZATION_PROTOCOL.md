@@ -2,6 +2,8 @@
 
 Read this protocol when the current task involves S3 Method Realization, Candidate Search, Cheap Evaluation, Result Diagnosis, Design Iteration, search reopening, or Gate 2 preparation.
 
+Follow `docs/CONTEXT_POLICY.md` to reuse unchanged loaded rules and retrieve only relevant artifacts. Context limits never lower candidate-design quality, mandatory seeds or audit depth. Before selection or reopening, expand the complete relevant candidate set and positive/negative diagnoses; a shortened registry view cannot justify eliminating unseen candidates.
+
 ## Permission layers
 
 - L1 Research Spine is stable: Research Question, context, core Hypothesis, Contribution directions, Claims, evaluation goals, task boundary, exclusions and target Venue. Changes require user review.

@@ -96,7 +96,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT)
     subparsers = parser.add_subparsers(dest="command", required=True)
-    subparsers.add_parser("show")
+    show_parser = subparsers.add_parser("show")
+    show_parser.add_argument("--full", action="store_true", help="Print the full authoritative state")
+    show_parser.add_argument("--field", help="Read one exact dotted state field without summarization")
 
     set_parser = subparsers.add_parser("set")
     set_parser.add_argument("path")
@@ -119,7 +121,18 @@ def main() -> int:
     root = args.root.resolve()
     try:
         if args.command == "show":
-            print(yaml.safe_dump(load_state(root), allow_unicode=True, sort_keys=False))
+            if args.field:
+                value = load_state(root)
+                for key in args.field.split("."):
+                    if not isinstance(value, dict) or key not in value:
+                        raise ProtocolError(f"Unknown state field: {args.field}")
+                    value = value[key]
+                print(yaml.safe_dump(value, allow_unicode=True, sort_keys=False))
+            elif args.full:
+                print(yaml.safe_dump(load_state(root), allow_unicode=True, sort_keys=False))
+            else:
+                from context_view import build_view
+                print(json.dumps(build_view(root), ensure_ascii=False, separators=(",", ":")))
         elif args.command == "set":
             state = load_state(root)
             set_nested(state, args.path, parse_value(args.value))

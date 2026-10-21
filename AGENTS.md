@@ -1,6 +1,6 @@
 # Project agent instructions
 
-`Research Spine.md` is the highest-priority project design specification. Before making research decisions, read `research/research_state.yaml`; do not reconstruct state from chat history when the file exists.
+`Research Spine.md` is the highest-priority project design specification. Read authoritative decision state through `tools/context_view.py` and expand exact fields/sources as needed; do not reconstruct state from chat history. Follow `docs/CONTEXT_POLICY.md` for role views, refresh and evidence expansion. Scientific quality takes priority over context savings. Consult relevant design-spec sections for L1 boundaries or unresolved protocol conflicts rather than repeatedly loading the full specification.
 
 ## Invariants
 

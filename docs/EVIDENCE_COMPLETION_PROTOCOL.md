@@ -1,5 +1,7 @@
 # Evidence Completion protocol
 
+Use the role views and source expansion rules in `docs/CONTEXT_POLICY.md`. Evidence aggregation and Freeze must inspect all required results and unresolved gaps, including counter-evidence; a bounded navigation view or successful hash check does not establish sufficiency. Keep existing eligibility, independent-audit and readiness gates intact.
+
 Read this protocol after the Method is converged and P0 formal results exist.
 
 ## Artifact chain

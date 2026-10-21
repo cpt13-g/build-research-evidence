@@ -50,6 +50,7 @@ RUNTIME_DOCUMENTS = [
     "docs/STATE_MACHINE.md",
     "docs/METHOD_REALIZATION_PROTOCOL.md",
     "docs/EVIDENCE_COMPLETION_PROTOCOL.md",
+    "docs/CONTEXT_POLICY.md",
 ]
 
 REFERENCE_PREFIXES = ("research/", "docs/", "tools/", "templates/", "schemas/", ".agents/")

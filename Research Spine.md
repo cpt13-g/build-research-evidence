@@ -1563,7 +1563,7 @@ research_state.yaml
 
 作为唯一事实源。
 
-所有 Skill 都必须读取它。
+所有 Skill 都必须以它为状态来源。默认通过 `tools/context_view.py` 按职责读取带 revision 和源文件哈希的只读视图，必要时展开相关原文；不得建立另一份可修改的摘要状态。Auditor 首轮仅获取实验卡、评价合同和原始运行证据，不能提前读取全局 Claim 判断或总控下一步解释。具体读取、刷新和证据展开规则见 `docs/CONTEXT_POLICY.md`。
 
 禁止依赖长聊天上下文记忆项目状态。
 

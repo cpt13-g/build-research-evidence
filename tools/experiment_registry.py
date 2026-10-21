@@ -190,7 +190,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT)
     subparsers = parser.add_subparsers(dest="command", required=True)
-    subparsers.add_parser("list")
+    list_parser = subparsers.add_parser("list")
+    list_parser.add_argument("--id", help="Read one complete registry entry")
+    list_parser.add_argument("--status", help="Filter by registry status")
+    list_parser.add_argument("--limit", type=int, default=8)
+    list_parser.add_argument("--all", action="store_true", help="Print all matching entries as YAML")
     register_parser = subparsers.add_parser("register")
     register_parser.add_argument("card_path")
     register_parser.add_argument("--expected-revision", type=int, required=True)
@@ -210,7 +214,20 @@ def main() -> int:
     root = args.root.resolve()
     try:
         if args.command == "list":
-            print(yaml.safe_dump(load_state(root)["experiment_registry"], sort_keys=False))
+            if args.limit < 1:
+                raise ProtocolError("Registry limit must be positive")
+            entries = load_state(root)["experiment_registry"]
+            if args.id:
+                entries = [entry for entry in entries if entry["id"] == args.id]
+                if not entries:
+                    raise ProtocolError(f"Unknown registry id: {args.id}")
+            if args.status:
+                entries = [entry for entry in entries if entry["status"] == args.status]
+            if args.all:
+                print(yaml.safe_dump(entries, sort_keys=False))
+            else:
+                print(json.dumps({"items": entries[:args.limit], "total": len(entries),
+                    "omitted": max(0, len(entries)-args.limit)}, ensure_ascii=False, separators=(",", ":")))
         elif args.command == "register":
             print(register(root, args.card_path, args.expected_revision)["revision"])
         elif args.command == "approve":

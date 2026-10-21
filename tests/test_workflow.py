@@ -19,6 +19,7 @@ from result_recorder import record  # noqa: E402
 from runner import run  # noqa: E402
 from state_manager import update_gate  # noqa: E402
 from validate_project import validate_project  # noqa: E402
+from context_view import build_view  # noqa: E402
 
 
 class WorkflowTest(unittest.TestCase):
@@ -108,11 +109,16 @@ class WorkflowTest(unittest.TestCase):
             activate(self.root, "E0002", state["revision"])
 
         state = activate(self.root, "E0001", state["revision"])
+        runner_view = build_view(self.root, "runner", experiment_id="E0001")
+        self.assertTrue(runner_view["execution_state"]["in_active_queue"])
         self.assertEqual(state["budget"]["reserved"]["gpu_hours"], 1.0)
         metric_path = self.root / "experiments" / "E0001" / "raw_metrics.json"
         metric_path.write_text('{"macro_f1": 0.81}\n', encoding="utf-8")
         raw_path = run(self.root, "E0001", [sys.executable, "-c", "print('macro_f1=0.81')"], 10, [metric_path])
         raw = json.loads(raw_path.read_text(encoding="utf-8"))
+        audit_view = build_view(self.root, "auditor", experiment_id="E0001",
+            manifest_path=raw_path.relative_to(self.root).as_posix())
+        self.assertEqual(raw["run_id"], audit_view["run_manifest"]["run_id"])
         self.assertEqual(raw["exit_code"], 0)
         self.assertEqual(raw["manifest_completeness"], "COMPLETE")
         self.assertIn("macro_f1=0.81", (raw_path.parent / "run.log").read_text(encoding="utf-8"))

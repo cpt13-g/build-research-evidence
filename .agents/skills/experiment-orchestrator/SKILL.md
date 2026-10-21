@@ -5,7 +5,7 @@ description: Direct a claim-driven research experiment project from post-Idea in
 
 # Experiment Orchestrator
 
-Act as the sole research decision-maker for this project. Start by reading `research/research_state.yaml`, then read `docs/PROTOCOLS.md` and `docs/ROLE_HANDOFFS.md`; read `docs/STATE_MACHINE.md` when interpreting or transitioning stages, `docs/METHOD_REALIZATION_PROTOCOL.md` for S3-S7 Method Search, and `docs/EVIDENCE_COMPLETION_PROTOCOL.md` for S8-S10. Resolve ambiguity through the authority order and ambiguity rules in the tracked runtime protocols. Use a documented conservative assumption only when it preserves scientific meaning and approved boundaries; otherwise stop and request the owning user or role decision. Never require an ignored local note or internal implementation plan at runtime.
+Act as the sole research decision-maker. Start with `python tools/context_view.py show --role orchestrator`, a revision/hash-linked projection of `research/research_state.yaml`. Read `docs/PROTOCOLS.md`, `docs/ROLE_HANDOFFS.md` and `docs/CONTEXT_POLICY.md` once per fresh context or changed policy hash. Load `docs/STATE_MACHINE.md` for stage decisions, `docs/METHOD_REALIZATION_PROTOCOL.md` for S3-S7 and `docs/EVIDENCE_COMPLETION_PROTOCOL.md` for S8-S10. Reuse unchanged rules already present in context. Resolve ambiguity through the authority order; never require ignored development notes.
 
 Keep the Scientific Spine stable while actively designing and refining Method Realization inside explicit Design Envelopes. Convert each Contribution into falsifiable Claims and Evidence Questions, then derive Functional Requirements before proposing mechanisms. Generate only 2-5 Candidates with scientific rationale, validation/ablation hooks and failure interpretation; never output a list of module names as Candidate design.
 
@@ -21,6 +21,8 @@ Do not change the Research Spine, expand budget, pass a Human Gate, or unfreeze 
 
 Never refine without an audited F2 Diagnosis that implicates the changed design dimensions. In REFINE, make one targeted change and validate it; reopen broad EXPLORE only with evidence that the mechanism class is wrong. Prepare the expanded Gate 2 summary before asking for a P0-stage user decision.
 
-Keep scientific decisions serial. Parallelize only approved dependency-independent runs whose files and budgets do not overlap. Stop a Card once its acceptance or rejection condition is decided; authorize an extension only for a named unresolved evidence gap with expected information gain and cost.
+Keep scientific decisions serial. Parallelize only approved dependency-independent runs whose files and budgets do not overlap. Assign a meaningful approved execution unit rather than invoking specialists for each shell command. Runner may handle bounded F1 repairs; changes of scientific meaning still return here. Auditor may review related runs together, preserving per-run manifests, records and independent judgments. Stop a Card once its acceptance or rejection condition is decided; extensions require a named evidence gap, information gain and cost.
+
+Before selection, Gate, hypothesis-risk, reopening or Freeze decisions, retrieve all relevant omitted candidates, dependencies, negative findings and unresolved gaps. Use exact state fields, registry IDs and `tools/context_view.py` history/excerpt queries; expand raw sources whenever the view is insufficient. Do not reduce design depth, required seeds or scientific review to save context. Refresh the view after state changes and validate revision before writes.
 
 Default user-facing updates to Current Stage, Current Finding, Decision and Next Action. Ask only for budget/Spine/primary-Claim risk decisions or the existing Human Gates.
